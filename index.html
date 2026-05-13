@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SSLG Ledger — Financial Transparency Portal</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Google Fonts: Display + Body pairing -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <!-- Lucide Icons via CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════ LOADING SCREEN -->
+  <div id="loader" class="loader">
+    <div class="loader-inner">
+      <div class="loader-ring"></div>
+      <span class="loader-text">Loading Portal</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <!-- Logo / Wordmark -->
+      <a href="#home" class="nav-logo">
+        <span class="logo-icon"><i data-lucide="landmark"></i></span>
+        <div class="logo-text">
+          <span class="logo-main">SSLG</span>
+          <span class="logo-sub">Ledger</span>
+        </div>
+      </a>
+
+      <!-- Desktop Links -->
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home"     class="nav-link active" data-section="home">Home</a></li>
+        <li><a href="#projects" class="nav-link"        data-section="projects">Projects</a></li>
+        <li><a href="#receipts" class="nav-link"        data-section="receipts">Receipts</a></li>
+        <li><a href="#about"    class="nav-link"        data-section="about">About</a></li>
+      </ul>
+
+      <!-- Right Controls -->
+      <div class="nav-controls">
+        <!-- Dark Mode Toggle -->
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <i data-lucide="sun" class="icon-sun"></i>
+          <i data-lucide="moon" class="icon-moon"></i>
+        </button>
+        <!-- Hamburger -->
+        <button class="hamburger" id="hamburger" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#home"     class="mob-link" data-section="home">Home</a>
+      <a href="#projects" class="mob-link" data-section="projects">Projects</a>
+      <a href="#receipts" class="mob-link" data-section="receipts">Receipts</a>
+      <a href="#about"    class="mob-link" data-section="about">About</a>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════ HERO SECTION -->
+  <section id="home" class="hero">
+    <!-- Decorative grid overlay -->
+    <div class="hero-grid"></div>
+    <div class="hero-orbs">
+      <span class="orb orb-1"></span>
+      <span class="orb orb-2"></span>
+      <span class="orb orb-3"></span>
+    </div>
+
+    <!-- Container keeps hero content aligned with all other sections -->
+    <div class="container hero-container">
+      <div class="hero-content fade-up">
+        <span class="hero-eyebrow">
+          <i data-lucide="shield-check"></i>
+          Transparency &amp; Accountability
+        </span>
+        <h1 class="hero-title">
+          SSLG Ledger<br/>
+          <em>Financial Transparency</em><br/>
+          Portal
+        </h1>
+        <p class="hero-desc">
+          A centralized hub for all financial reports, project budgets, receipts,
+          and activity logs — empowering students with clear, honest, and
+          real-time visibility into school funds.
+        </p>
+        <div class="hero-actions">
+          <a href="#overview" class="btn btn-primary">
+            <i data-lucide="bar-chart-2"></i>
+            View Reports
+          </a>
+          <a href="#projects" class="btn btn-ghost">
+            <i data-lucide="folder-open"></i>
+            Browse Projects
+          </a>
+        </div>
+        <!-- Quick stats ribbon -->
+        <div class="hero-stats">
+          <div class="hstat">
+            <span class="hstat-val" data-count="12">0</span>
+            <span class="hstat-label">Projects</span>
+          </div>
+          <div class="hstat-div"></div>
+          <div class="hstat">
+            <span class="hstat-val" data-count="47">0</span>
+            <span class="hstat-label">Receipts Filed</span>
+          </div>
+          <div class="hstat-div"></div>
+          <div class="hstat">
+            <span class="hstat-val" data-count="100">0</span>
+            <span class="hstat-label">% Transparent</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Floating accent card -->
+      <div class="hero-card fade-up delay-3">
+        <div class="hcard-label">Remaining Balance</div>
+        <div class="hcard-amount">₱180,000</div>
+        <div class="hcard-bar">
+          <div class="hcard-bar-fill" style="width: 36%"></div>
+        </div>
+        <div class="hcard-meta">36% of ₱500,000 Annual Budget</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ OVERVIEW DASHBOARD -->
+  <section id="overview" class="section overview-section">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="section-tag">Financial Overview</span>
+        <h2 class="section-title">Budget at a Glance</h2>
+        <p class="section-desc">Live summary of the current fiscal year's financial standing.</p>
+      </div>
+
+      <div class="overview-grid">
+        <!-- LEFT: Financial Table Card -->
+        <div class="card finance-card fade-up">
+          <div class="card-header">
+            <i data-lucide="pie-chart"></i>
+            <h3>Budget Summary <span class="fy-badge">FY 2024–2025</span></h3>
+          </div>
+          <table class="finance-table">
+            <tbody>
+              <tr class="ft-row">
+                <td class="ft-icon-cell"><i data-lucide="wallet"></i></td>
+                <td class="ft-label">Annual Budget</td>
+                <td class="ft-amount neutral" data-count-peso="500000">₱0</td>
+                <td><span class="badge badge-blue">Allocated</span></td>
+              </tr>
+              <tr class="ft-row">
+                <td class="ft-icon-cell"><i data-lucide="trending-down"></i></td>
+                <td class="ft-label">Total Spent</td>
+                <td class="ft-amount negative" data-count-peso="320000">₱0</td>
+                <td><span class="badge badge-orange">Disbursed</span></td>
+              </tr>
+              <tr class="ft-row highlight-row">
+                <td class="ft-icon-cell"><i data-lucide="shield"></i></td>
+                <td class="ft-label">Remaining Balance</td>
+                <td class="ft-amount positive" data-count-peso="180000">₱0</td>
+                <td><span class="badge badge-green">Available</span></td>
+              </tr>
+              <tr class="ft-row">
+                <td class="ft-icon-cell"><i data-lucide="trending-up"></i></td>
+                <td class="ft-label">Total Profit</td>
+                <td class="ft-amount positive" data-count-peso="45000">₱0</td>
+                <td><span class="badge badge-gold">Surplus</span></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Mini progress bars -->
+          <div class="spend-progress">
+            <div class="sp-label">
+              <span>Budget Utilization</span>
+              <span class="sp-pct">64%</span>
+            </div>
+            <div class="sp-bar"><div class="sp-fill" data-width="64"></div></div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Latest Activities -->
+        <div class="card activity-card fade-up delay-2">
+          <div class="card-header">
+            <i data-lucide="activity"></i>
+            <h3>Latest SSLG Activities</h3>
+          </div>
+          <div class="activity-list" id="activityList">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- Quick KPI row — inside overview-grid so it spans both columns on desktop -->
+        <div class="kpi-row">
+          <div class="kpi-card fade-up">
+            <i data-lucide="users"></i>
+            <div>
+              <span class="kpi-val">4,200</span>
+              <span class="kpi-label">Students Benefited</span>
+            </div>
+          </div>
+          <div class="kpi-card fade-up delay-1">
+            <i data-lucide="calendar-check"></i>
+            <div>
+              <span class="kpi-val">23</span>
+              <span class="kpi-label">Events Funded</span>
+            </div>
+          </div>
+          <div class="kpi-card fade-up delay-2">
+            <i data-lucide="file-check"></i>
+            <div>
+              <span class="kpi-val">100%</span>
+              <span class="kpi-label">Reports Submitted</span>
+            </div>
+          </div>
+          <div class="kpi-card fade-up delay-3">
+            <i data-lucide="star"></i>
+            <div>
+              <span class="kpi-val">A+</span>
+              <span class="kpi-label">Audit Rating</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ SCHOOL CALENDAR -->
+  <section id="calendar" class="section calendar-section">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="section-tag">Schedule</span>
+        <h2 class="section-title">SSLG Events Calendar</h2>
+        <p class="section-desc">Track upcoming deadlines, events, and treasurer report submissions.</p>
+      </div>
+
+      <div class="calendar-layout">
+        <!-- Calendar Widget -->
+        <div class="cal-widget card fade-up">
+          <div class="cal-nav">
+            <button class="cal-btn" id="prevMonth"><i data-lucide="chevron-left"></i></button>
+            <h3 class="cal-month-label" id="calMonthLabel"></h3>
+            <button class="cal-btn" id="nextMonth"><i data-lucide="chevron-right"></i></button>
+          </div>
+          <div class="cal-weekdays">
+            <span>Su</span><span>Mo</span><span>Tu</span><span>We</span>
+            <span>Th</span><span>Fr</span><span>Sa</span>
+          </div>
+          <div class="cal-days" id="calDays"></div>
+
+          <!-- Legend -->
+          <div class="cal-legend">
+            <span class="leg-item"><span class="leg-dot dot-event"></span>School Event</span>
+            <span class="leg-item"><span class="leg-dot dot-sslg"></span>SSLG Activity</span>
+            <span class="leg-item"><span class="leg-dot dot-report"></span>Report Due</span>
+            <span class="leg-item"><span class="leg-dot dot-deadline"></span>Deadline</span>
+          </div>
+        </div>
+
+        <!-- Event Cards -->
+        <div class="cal-events fade-up delay-2">
+          <h3 class="events-heading">Upcoming Events</h3>
+          <div class="event-cards" id="eventCards">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ PROJECTS SECTION -->
+  <section id="projects" class="section projects-section">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="section-tag">Funded Programs</span>
+        <h2 class="section-title">Projects &amp; Initiatives</h2>
+        <p class="section-desc">Detailed breakdown of budget allocation and current project status.</p>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="filter-tabs fade-up">
+        <!-- On mobile: "All" sits alone on top row, rest wrap below -->
+        <div class="ftab-all-row">
+          <button class="ftab active" data-filter="all">All</button>
+        </div>
+        <div class="ftab-rest-row">
+          <button class="ftab" data-filter="completed">Completed</button>
+          <button class="ftab" data-filter="ongoing">Ongoing</button>
+          <button class="ftab" data-filter="upcoming">Upcoming</button>
+        </div>
+      </div>
+
+      <div class="projects-grid" id="projectsGrid">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ RECEIPTS SECTION -->
+  <section id="receipts" class="section receipts-section">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="section-tag">Documentation</span>
+        <h2 class="section-title">Official Receipts</h2>
+        <p class="section-desc">All financial transactions are documented and publicly available.</p>
+      </div>
+
+      <!-- Search / Filter Row -->
+      <div class="receipt-controls fade-up">
+        <div class="search-box">
+          <i data-lucide="search"></i>
+          <input type="text" id="receiptSearch" placeholder="Search receipts..." />
+        </div>
+        <select class="receipt-filter" id="receiptFilter">
+          <option value="all">All Categories</option>
+          <option value="supplies">Supplies</option>
+          <option value="venue">Venue</option>
+          <option value="food">Food &amp; Catering</option>
+          <option value="services">Services</option>
+        </select>
+      </div>
+
+      <div class="receipts-grid" id="receiptsGrid">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ ABOUT SECTION -->
+  <section id="about" class="section about-section">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="section-tag">Who We Are</span>
+        <h2 class="section-title">About the Ledger</h2>
+      </div>
+
+      <div class="about-grid">
+        <!-- Ledger Profile -->
+        <div class="about-profile card fade-up">
+          <div class="profile-avatar">
+            <div class="avatar-circle">
+              <i data-lucide="user-circle"></i>
+            </div>
+            <div class="profile-glow"></div>
+          </div>
+          <h3 class="profile-name">Maria Santos</h3>
+          <span class="profile-title">SSLG Ledger | S.Y. 2024–2025</span>
+          <p class="profile-bio">
+            A dedicated student leader committed to responsible fiscal management
+            and transparent governance. Serving the student body with integrity
+            and accountability in every financial decision.
+          </p>
+          <div class="profile-socials">
+            <a href="#" class="social-btn" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+            <a href="#" class="social-btn" aria-label="Email"><i data-lucide="mail"></i></a>
+            <a href="#" class="social-btn" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+          </div>
+        </div>
+
+        <!-- Mission & Contact -->
+        <div class="about-info fade-up delay-2">
+          <div class="card mission-card">
+            <div class="card-header">
+              <i data-lucide="target"></i>
+              <h3>Our Mission</h3>
+            </div>
+            <p>
+              The SSLG Ledger's office is dedicated to maintaining the highest
+              standards of financial transparency. Every peso collected and spent
+              is documented, reported, and made accessible to all students and
+              stakeholders.
+            </p>
+            <ul class="mission-list">
+              <li><i data-lucide="check-circle"></i>Full accountability on all expenditures</li>
+              <li><i data-lucide="check-circle"></i>Timely submission of financial reports</li>
+              <li><i data-lucide="check-circle"></i>Open access to receipts and documentation</li>
+              <li><i data-lucide="check-circle"></i>Ethical management of student funds</li>
+            </ul>
+          </div>
+
+          <div class="card contact-card">
+            <div class="card-header">
+              <i data-lucide="message-circle"></i>
+              <h3>Contact &amp; Reach</h3>
+            </div>
+            <div class="contact-items">
+              <div class="contact-item">
+                <i data-lucide="mail"></i>
+                <span>treasurer@sslg.edu.ph</span>
+              </div>
+              <div class="contact-item">
+                <i data-lucide="map-pin"></i>
+                <span>Student Council Office, Room 101</span>
+              </div>
+              <div class="contact-item">
+                <i data-lucide="clock"></i>
+                <span>Office Hours: Mon–Fri, 8AM–5PM</span>
+              </div>
+              <div class="contact-item">
+                <i data-lucide="phone"></i>
+                <span>(082) 000-0000</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo">
+            <span class="logo-icon"><i data-lucide="landmark"></i></span>
+            <div class="logo-text">
+              <span class="logo-main">SSLG</span>
+              <span class="logo-sub">Ledger</span>
+            </div>
+          </div>
+          <p>Financial Transparency Portal<br/>S.Y. 2024–2025</p>
+        </div>
+        <div class="footer-links">
+          <h4>Navigation</h4>
+          <a href="#home">Home</a>
+          <a href="#overview">Dashboard</a>
+          <a href="#projects">Projects</a>
+          <a href="#receipts">Receipts</a>
+          <a href="#about">About</a>
+        </div>
+        <div class="footer-links">
+          <h4>Resources</h4>
+          <a href="#">Annual Budget Report</a>
+          <a href="#">Audit Documents</a>
+          <a href="#">Request for Info</a>
+          <a href="#">School Guidelines</a>
+        </div>
+        <div class="footer-note">
+          <h4>Transparency Pledge</h4>
+          <p>Every financial record on this portal is authentic, verified, and committed to student accountability.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 SSLG Ledger's Office. All Rights Reserved.</span>
+        <span>Built for Student Transparency</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════ BACK TO TOP -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i data-lucide="arrow-up"></i>
+  </button>
+
+  <!-- ═══════════════════════════════════════════ RECEIPT MODAL -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="receiptModal">
+      <button class="modal-close" id="modalClose"><i data-lucide="x"></i></button>
+      <div class="modal-content" id="modalContent">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ CALENDAR TOOLTIP -->
+  <div class="cal-tooltip" id="calTooltip"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
