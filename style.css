@@ -68,6 +68,7 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  overflow-x: hidden; /* Prevent horizontal scroll on all mobile browsers */
 }
 
 body {
@@ -235,12 +236,16 @@ button { cursor: pointer; border: none; background: none; }
 /* ── LAYOUT UTILITIES ──────────────────────────────────────────── */
 .container {
   max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
   padding: 0 24px;
+  box-sizing: border-box;
 }
 
 .section {
   padding: 100px 0;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 /* ── SECTION HEADERS ───────────────────────────────────────────── */
@@ -373,13 +378,13 @@ button { cursor: pointer; border: none; background: none; }
    ════════════════════════════════════════════════════════════════ */
 .hero {
   min-height: 100vh;
+  width: 100%;
   background: var(--navy);
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  /* Top/bottom padding stays; sides are handled by .container inside */
   padding: 120px 0 80px;
 }
 
@@ -724,7 +729,8 @@ button { cursor: pointer; border: none; background: none; }
 .cal-widget {
   background: rgba(255,255,255,0.04);
   border-color: rgba(255,255,255,0.1);
-  min-width: 320px;
+  min-width: 0; /* Removed fixed min-width — was causing overflow on mobile */
+  width: 100%;
 }
 .cal-nav {
   display: flex; align-items: center; justify-content: space-between;
@@ -976,7 +982,7 @@ button { cursor: pointer; border: none; background: none; }
   margin-bottom: 36px;
 }
 .search-box {
-  flex: 1; min-width: 220px;
+  flex: 1; min-width: 0;
   display: flex; align-items: center; gap: 10px;
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.12);
@@ -1324,7 +1330,10 @@ button { cursor: pointer; border: none; background: none; }
   .section-header { margin-bottom: 36px; }
 
   /* ── HERO ── */
-  .hero { padding: 100px 0 60px; }
+  .hero { padding: 100px 0 60px; width: 100%; }
+
+  /* Force hide the floating card — no space for it on mobile */
+  .hero-card { display: none !important; }
 
   /* Stack hero vertically and center everything */
   .hero-container {
@@ -1332,20 +1341,25 @@ button { cursor: pointer; border: none; background: none; }
     align-items: center;
     justify-content: center;
     text-align: center;
-    gap: 32px;
+    gap: 28px;
+    width: 100%;
   }
 
-  .hero-content { width: 100%; }
+  .hero-content {
+    width: 100%;
+    max-width: 100%;
+  }
 
   .hero-eyebrow { justify-content: center; }
 
   .hero-title { font-size: clamp(2rem, 8vw, 2.8rem); }
 
-  /* Center the desc but keep it readable */
+  /* Desc: full width, centered */
   .hero-desc {
     max-width: 100%;
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
   }
 
   /* Center the action buttons */
