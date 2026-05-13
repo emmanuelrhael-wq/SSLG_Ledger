@@ -1267,57 +1267,137 @@ button { cursor: pointer; border: none; background: none; }
 
 /* ════════════════════════════════════════════════════════════════
    RESPONSIVE
+   Desktop (>1024px) → Tablet (≤1024px) → Mobile (≤768px) → Small (≤480px)
+   Desktop view is untouched. All rules below are mobile-only polish.
    ════════════════════════════════════════════════════════════════ */
 
-/* ── DESKTOP (>1024px): KPI row spans both overview columns */
+/* ── DESKTOP ONLY: KPI row spans both overview columns ─────────── */
 @media (min-width: 1025px) {
-  /* KPI row lives inside overview-grid as a 3rd row spanning both cols */
   .overview-grid {
     grid-template-areas:
       "finance activity"
-      "kpi kpi";
+      "kpi     kpi";
   }
   .finance-card  { grid-area: finance; }
   .activity-card { grid-area: activity; }
-  .kpi-row       { grid-area: kpi; grid-template-columns: repeat(4, 1fr); margin-top: 0; }
+  .kpi-row {
+    grid-area: kpi;
+    grid-template-columns: repeat(4, 1fr);
+    margin-top: 0;
+  }
 }
 
+/* ── TABLET (≤1024px) ───────────────────────────────────────────── */
 @media (max-width: 1024px) {
+  /* Overview: single column, no grid-areas */
   .overview-grid {
     grid-template-columns: 1fr;
     grid-template-areas: none;
   }
-  .kpi-row { grid-column: 1; grid-template-columns: 1fr 1fr; margin-top: 0; }
+  .kpi-row {
+    grid-column: 1;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 0;
+  }
+
+  /* Calendar stacks vertically */
   .calendar-layout { grid-template-columns: 1fr; }
-  .cal-widget { min-width: 0; }
+  .cal-widget      { min-width: 0; }
+
+  /* Footer 2 columns */
   .footer-grid { grid-template-columns: 1fr 1fr; }
-  /* Hero card hidden on smaller screens */
-  .hero-card { display: none; }
-  .about-grid { grid-template-columns: 1fr; }
+
+  /* Hero: hide floating card, let content fill width */
+  .hero-card    { display: none; }
+  .about-grid   { grid-template-columns: 1fr; }
 }
 
+/* ── MOBILE (≤768px) ────────────────────────────────────────────── */
 @media (max-width: 768px) {
+
+  /* ── NAV ── */
   .nav-links { display: none; }
   .hamburger { display: flex; }
 
-  .section { padding: 70px 0; }
+  /* ── GLOBAL SECTION SPACING ── */
+  .section { padding: 60px 0; }
+  .section-header { margin-bottom: 36px; }
 
-  /* Overview cards full width */
+  /* ── HERO ── */
+  .hero { padding: 100px 0 60px; }
+
+  /* Stack hero vertically and center everything */
+  .hero-container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 32px;
+  }
+
+  .hero-content { width: 100%; }
+
+  .hero-eyebrow { justify-content: center; }
+
+  .hero-title { font-size: clamp(2rem, 8vw, 2.8rem); }
+
+  /* Center the desc but keep it readable */
+  .hero-desc {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Center the action buttons */
+  .hero-actions {
+    justify-content: center;
+    margin-bottom: 36px;
+  }
+
+  /* Stats ribbon: full width, centered */
+  .hero-stats {
+    max-width: 100%;
+    width: 100%;
+    justify-items: center;
+  }
+
+  /* ── OVERVIEW / DASHBOARD ── */
   .overview-grid { grid-template-columns: 1fr; }
 
-  /* Fix 3: KPI 2 columns on tablet/phablet */
-  .kpi-row { grid-template-columns: 1fr 1fr; }
+  /* Finance table: tighten cell padding */
+  .ft-row td { padding: 12px 6px; }
+  .ft-amount { font-size: 0.95rem; padding-right: 8px; }
+  .ft-label  { font-size: 0.82rem; }
 
-  .projects-grid { grid-template-columns: 1fr; }
-  .receipts-grid { grid-template-columns: 1fr 1fr; }
-  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
-  .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+  /* Activity items: more breathing room */
+  .activity-item { padding: 12px; }
+  .act-title { font-size: 0.85rem; }
 
-  /* Fix 5: filter tabs — All on its own row, rest wrap below */
+  /* KPI: 2 columns */
+  .kpi-row { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .kpi-card { padding: 16px; gap: 10px; }
+  .kpi-val  { font-size: 1.2rem; }
+
+  /* ── CALENDAR ── */
+  .calendar-layout { grid-template-columns: 1fr; gap: 20px; }
+  .cal-widget { padding: 20px; }
+  .cal-day    { font-size: 0.78rem; }
+  .events-heading { margin-top: 4px; }
+  .event-cards { gap: 10px; }
+  .event-card { padding: 12px 14px; }
+
+  /* ── PROJECTS ── */
+  .projects-grid { grid-template-columns: 1fr; gap: 18px; }
+  .project-img   { height: 140px; }
+  .project-body  { padding: 16px; }
+  .proj-title    { font-size: 1rem; }
+
+  /* Filter tabs: All full-width top, rest centered below */
   .filter-tabs {
     display: grid;
     grid-template-columns: 1fr;
     gap: 8px;
+    margin-bottom: 28px;
   }
   .ftab-all-row {
     display: flex;
@@ -1325,7 +1405,6 @@ button { cursor: pointer; border: none; background: none; }
   }
   .ftab-all-row .ftab {
     width: 100%;
-    justify-content: center;
     text-align: center;
   }
   .ftab-rest-row {
@@ -1334,13 +1413,90 @@ button { cursor: pointer; border: none; background: none; }
     justify-content: center;
     flex-wrap: wrap;
   }
+
+  /* ── RECEIPTS ── */
+  .receipts-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+  .receipt-controls { flex-direction: column; gap: 10px; }
+  .search-box { min-width: 0; width: 100%; }
+  .receipt-filter { width: 100%; }
+
+  /* ── ABOUT ── */
+  .about-grid { grid-template-columns: 1fr; gap: 20px; }
+  .about-info { gap: 16px; }
+  .about-profile { padding: 24px; }
+  .contact-items { gap: 10px; }
+
+  /* ── FOOTER ── */
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding-bottom: 36px;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+    font-size: 0.72rem;
+  }
+
+  /* ── BACK TO TOP ── */
+  .back-to-top { bottom: 20px; right: 20px; }
 }
 
+/* ── SMALL PHONES (≤480px) ──────────────────────────────────────── */
 @media (max-width: 480px) {
-  .hstat-val     { font-size: 1.15rem; }
-  .hero-stats    { max-width: 100%; }   /* override so it doesn't overflow on tiny screens */
-  .kpi-row       { grid-template-columns: 1fr 1fr; }
+
+  /* ── HERO ── */
+  .hero { padding: 90px 0 50px; }
+  .hero-title { font-size: 2rem; }
+  .hero-eyebrow { font-size: 0.68rem; }
+
+  /* Buttons stack on very small screens */
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .btn { width: 100%; justify-content: center; }
+
+  /* Stats: smaller values */
+  .hstat-val   { font-size: 1.1rem; }
+  .hstat-label { font-size: 0.62rem; }
+  .hero-stats  { max-width: 100%; padding: 12px 10px; }
+
+  /* ── OVERVIEW ── */
+  .card { padding: 20px 16px; }
+  .ft-row td  { padding: 10px 4px; }
+  .ft-amount  { font-size: 0.88rem; }
+  .ft-label   { font-size: 0.78rem; }
+
+  /* KPI: 2 columns kept, just tighter */
+  .kpi-row  { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .kpi-card { padding: 14px 12px; flex-direction: column; align-items: flex-start; gap: 6px; }
+  .kpi-val  { font-size: 1.1rem; }
+  .kpi-label { font-size: 0.7rem; }
+
+  /* ── PROJECTS ── */
+  .proj-budget { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .pb-item { padding: 8px 10px; }
+
+  /* ── RECEIPTS ── */
   .receipts-grid { grid-template-columns: 1fr; }
-  .proj-budget   { grid-template-columns: 1fr; }
-  .hero-title    { font-size: 2.2rem; }
+  .receipt-preview { height: 120px; }
+
+  /* ── SECTION HEADERS ── */
+  .section-title { font-size: 1.8rem; }
+  .section-desc  { font-size: 0.92rem; }
+
+  /* ── CALENDAR ── */
+  .cal-day { font-size: 0.72rem; border-radius: 6px; }
+  .cal-weekdays span { font-size: 0.62rem; }
+
+  /* ── ABOUT ── */
+  .avatar-circle { width: 90px; height: 90px; }
+  .avatar-circle svg { width: 44px; height: 44px; }
+  .profile-name { font-size: 1.2rem; }
+
+  /* ── MODAL ── */
+  .modal { padding: 22px 18px; border-radius: var(--radius-lg); }
 }
