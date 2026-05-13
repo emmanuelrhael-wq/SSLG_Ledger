@@ -427,23 +427,28 @@ button { cursor: pointer; border: none; background: none; }
 }
 
 /* Hero layout */
-/* hero-container sits inside .container and lays out content + floating card */
+/* hero-container: same .container width as every other section */
 .hero-container {
   position: relative;
   z-index: 2;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 40px;
+  gap: 48px;
   width: 100%;
 }
 
+/* hero-content fills available space beside the floating card */
 .hero-content {
-  position: relative; z-index: 2;
-  /* Takes up as much as needed; hero-card is positioned absolutely on desktop */
+  position: relative;
+  z-index: 2;
   flex: 1;
-  max-width: 680px;
+  /* No max-width cap — fills the same 1200px container as every other section */
 }
+
+/* Keep prose/stats readable at wide widths */
+.hero-desc  { max-width: 560px; }
+.hero-stats { max-width: 480px; }
 
 .hero-eyebrow {
   display: inline-flex; align-items: center; gap: 7px;
@@ -1286,10 +1291,8 @@ button { cursor: pointer; border: none; background: none; }
   .calendar-layout { grid-template-columns: 1fr; }
   .cal-widget { min-width: 0; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
-  /* Hero card hidden on smaller screens; container becomes single-column */
+  /* Hero card hidden on smaller screens */
   .hero-card { display: none; }
-  .hero-container { justify-content: flex-start; }
-  .hero-content { max-width: 100%; }
   .about-grid { grid-template-columns: 1fr; }
 }
 
@@ -1334,15 +1337,9 @@ button { cursor: pointer; border: none; background: none; }
 }
 
 @media (max-width: 480px) {
-  /* Fix 1: hero stats never overflow */
-  .hero-stats { max-width: 100%; }
-  .hstat-val  { font-size: 1.25rem; }
-
-  /* Consistent side padding handled by base .container rule */
-
-  /* Fix 3: KPI single column on small phones */
-  .kpi-row { grid-template-columns: 1fr 1fr; }
-
+  .hstat-val     { font-size: 1.15rem; }
+  .hero-stats    { max-width: 100%; }   /* override so it doesn't overflow on tiny screens */
+  .kpi-row       { grid-template-columns: 1fr 1fr; }
   .receipts-grid { grid-template-columns: 1fr; }
   .proj-budget   { grid-template-columns: 1fr; }
   .hero-title    { font-size: 2.2rem; }
