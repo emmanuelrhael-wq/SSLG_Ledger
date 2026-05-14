@@ -585,10 +585,8 @@ button { cursor: pointer; border: none; background: none; }
 
 .overview-grid {
   display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  grid-template-rows: auto auto;
+  grid-template-columns: 1fr 1fr;
   gap: 28px;
-  /* No bottom margin — KPI row is now inside the grid */
 }
 
 /* Finance table card */
@@ -681,10 +679,8 @@ button { cursor: pointer; border: none; background: none; }
 /* KPI row */
 .kpi-row {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 1fr); /* overridden to 2×2 on desktop */
   gap: 18px;
-  /* Sits below both overview columns — full width */
-  grid-column: 1 / -1;
 }
 .kpi-card {
   background: var(--bg-card);
@@ -1279,18 +1275,40 @@ button { cursor: pointer; border: none; background: none; }
 
 /* ── DESKTOP ONLY: KPI row spans both overview columns ─────────── */
 @media (min-width: 1025px) {
+  /* 3-area layout: left col = finance + kpi stacked, right col = activity full height */
   .overview-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr;
     grid-template-areas:
-      "finance activity"
-      "kpi     kpi";
+      "finance  activity"
+      "kpi      activity";
+    align-items: start;
   }
-  .finance-card  { grid-area: finance; }
-  .activity-card { grid-area: activity; }
+  .finance-card  {
+    grid-area: finance;
+    /* Remove flex-grow so it doesn't stretch to fill the left column */
+    align-self: start;
+  }
+  .activity-card {
+    grid-area: activity;
+    /* Span both rows so it matches the combined height of finance + kpi */
+    align-self: stretch;
+  }
   .kpi-row {
     grid-area: kpi;
-    grid-template-columns: repeat(4, 1fr);
+    /* 2×2 grid under the budget summary */
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
     margin-top: 0;
+    align-self: start;
   }
+  /* Tighter KPI cards to fit the 2×2 layout neatly */
+  .kpi-card {
+    padding: 16px;
+    gap: 12px;
+  }
+  .kpi-val   { font-size: 1.25rem; }
+  .kpi-label { font-size: 0.72rem; }
 }
 
 /* ── TABLET (≤1024px) ───────────────────────────────────────────── */
